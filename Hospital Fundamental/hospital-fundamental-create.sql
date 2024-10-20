@@ -1,12 +1,24 @@
 USE hospital_fundamental;
 
+CREATE TABLE IF NOT EXISTS `especialidade` (
+    `id_especialidade` INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+    `descricao` VARCHAR(255) NOT NULL UNIQUE
+);
+
 CREATE TABLE IF NOT EXISTS `medico` (
     `id_medico` INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
     `nome` VARCHAR(512) NOT NULL UNIQUE,
     `cpf` VARCHAR(20) NOT NULL UNIQUE,
-    `registro_do_conselho_de_enfermagem` VARCHAR(50) NOT NULL UNIQUE,
-    `tipo_do_medico` ENUM('generalista', 'especialista', 'residente') NOT NULL,
-    `especialidade_do_medico` ENUM('pediatra', 'clinica_geral', 'gastroenterologia', 'dermatologia') NOT NULL
+    `registro_do_conselho_de_enfermagem` VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- Tabela de relacionamento médico e especialidade
+CREATE TABLE IF NOT EXISTS `medico_especialidade` (
+    `id_medico` INT NOT NULL,
+    `id_especialidade` INT NOT NULL,
+    PRIMARY KEY (`id_medico`, `id_especialidade`),
+    FOREIGN KEY (`id_medico`) REFERENCES `medico` (`id_medico`) ON DELETE CASCADE,
+    FOREIGN KEY (`id_especialidade`) REFERENCES `especialidade` (`id_especialidade`) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `paciente` (
