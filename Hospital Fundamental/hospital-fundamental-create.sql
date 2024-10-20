@@ -21,6 +21,36 @@ CREATE TABLE IF NOT EXISTS `medico_especialidade` (
     FOREIGN KEY (`id_especialidade`) REFERENCES `especialidade` (`id_especialidade`) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS `internacao` (
+    `id_internacao` INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+    `data_de_entrada` DATE NOT NULL,
+    `data_prevista_de_alta` DATE NOT NULL,
+    `data_da_alta` DATE NOT NULL,
+    `descricao_do_procedimento` VARCHAR(510) NOT NULL,
+    `id_paciente` INT NOT NULL, -- Chave estrangeira para paciente
+    `id_medico` INT NOT NULL, -- Chave estrangeira para médico
+    `id_quarto` INT NOT NULL, -- Chave estrangeira para quarto
+    FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id_paciente`),
+    FOREIGN KEY (`id_medico`) REFERENCES `medico` (`id_medico`),
+    FOREIGN KEY (`id_quarto`) REFERENCES `quarto` (`numero_do_quarto`)
+);
+
+CREATE TABLE IF NOT EXISTS `enfermeiro` (
+    `id_enfermeiro` INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+    `nome` VARCHAR(512) NOT NULL,
+    `cpf` VARCHAR(20) NOT NULL UNIQUE,
+    `registro_enfermagem` VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- tabela de relacionamento entre internação e enfermeiro
+CREATE TABLE IF NOT EXISTS `internacao_enfermeiro` (
+    `id_internacao` INT NOT NULL,
+    `id_enfermeiro` INT NOT NULL,
+    PRIMARY KEY (`id_internacao`, `id_enfermeiro`),
+    FOREIGN KEY (`id_internacao`) REFERENCES `internacao` (`id_internacao`),
+    FOREIGN KEY (`id_enfermeiro`) REFERENCES `enfermeiro` (`id_enfermeiro`)
+);
+
 CREATE TABLE IF NOT EXISTS `paciente` (
     `id_paciente` INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
     `nome` VARCHAR(512) NOT NULL UNIQUE,
@@ -48,19 +78,9 @@ CREATE TABLE IF NOT EXISTS `convenio` (
     `tempo_carencia` INT NOT NULL,
     `numero_da_carteira_do_convenio` INT NOT NULL UNIQUE,
     `id_paciente` INT,  -- Chave estrangeira para paciente
+    `id_medico` INT, -- Chave estrangeira para medico
+    FOREIGN KEY (`id_medico`) REFERENCES `medico` (`id_medico`),
     FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id_paciente`)
-);
-
-CREATE TABLE IF NOT EXISTS `internacao` (
-    `id_internacao` INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-    `data_de_entrada` DATE NOT NULL,
-    `data_prevista_de_alta` DATE NOT NULL,
-    `data_da_alta` DATE NOT NULL,
-    `descricao_do_procedimento` VARCHAR(510) NOT NULL,
-    `id_paciente` INT NOT NULL, -- Chave estrangeira para paciente
-    `id_medico` INT NOT NULL, -- Chave estrangeira para médico
-    FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id_paciente`),
-    FOREIGN KEY (`id_medico`) REFERENCES `medico` (`id_medico`)
 );
 
 CREATE TABLE IF NOT EXISTS `quarto` (
