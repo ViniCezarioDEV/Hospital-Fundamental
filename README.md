@@ -13,3 +13,6 @@ Nessa etapa, eu fiz um script usando MySQL para alimentar o banco de dados
 
 ## Parte 4
 Nessa etapa, eu fiz um script usando MySQL que muda a tabela medicos, adicinando uma coluna "em_atividade", e seta alguns médicos como em atividade e outros não
+
+## Parte 5
+Nessa etapa, eu fiz uma série de questôes, usando SELECT com MySQL
