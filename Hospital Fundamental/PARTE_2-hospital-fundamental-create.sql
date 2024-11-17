@@ -1,3 +1,6 @@
+DROP DATABASE IF EXISTS hospital_fundamental;
+CREATE DATABASE IF NOT EXISTS hospital_fundamental;
+
 USE hospital_fundamental;
 
 -- Criar tabelas sem chaves estrangeiras inicialmente
@@ -31,11 +34,11 @@ CREATE TABLE IF NOT EXISTS `paciente` (
 );
 
 CREATE TABLE IF NOT EXISTS `quarto` (
+	`id_quarto` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `numero_do_quarto` INT NOT NULL,
     `descricao_do_quarto` VARCHAR(255) NOT NULL,
     `valor_diaria` FLOAT(10) NOT NULL,
-    `tipo_do_quarto` ENUM('apartamento', 'quarto_duplo', 'enfermagem') NOT NULL,
-    PRIMARY KEY (`numero_do_quarto`) -- Definir como chave primária
+    `tipo_do_quarto` ENUM('apartamento', 'quarto_duplo', 'enfermagem') NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `internacao` (
@@ -98,7 +101,7 @@ ADD FOREIGN KEY (`id_especialidade`) REFERENCES `especialidade` (`id_especialida
 ALTER TABLE `internacao`
 ADD FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id_paciente`),
 ADD FOREIGN KEY (`id_medico`) REFERENCES `medico` (`id_medico`),
-ADD FOREIGN KEY (`id_quarto`) REFERENCES `quarto` (`numero_do_quarto`);
+ADD FOREIGN KEY (`id_quarto`) REFERENCES `quarto` (`id_quarto`);
 
 ALTER TABLE `internacao_enfermeiro`
 ADD FOREIGN KEY (`id_internacao`) REFERENCES `internacao` (`id_internacao`),

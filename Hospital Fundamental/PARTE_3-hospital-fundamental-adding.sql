@@ -98,13 +98,13 @@ INSERT INTO `quarto` (numero_do_quarto, descricao_do_quarto, valor_diaria, tipo_
 
 -- Inserindo dados na tabela internação
 INSERT INTO `internacao` (data_de_entrada, data_prevista_de_alta, data_da_alta, descricao_do_procedimento, id_paciente, id_medico, id_quarto) VALUES
-('2015-03-01', '2015-03-05', '2015-03-04', 'Apêndice', 1, 1, 101), -- Paciente 1, Médico 1, Quarto 101
-('2016-06-10', '2016-06-15', '2016-06-14', 'Fratura de perna', 2, 2, 201), -- Paciente 2, Médico 2, Quarto 201
-('2017-09-20', '2017-09-25', '2017-09-24', 'Pneumonia', 1, 3, 102), -- Paciente 1, Médico 3, Quarto 102
-('2018-05-15', '2018-05-20', '2018-05-19', 'Cirurgia Geral', 3, 1, 101), -- Paciente 3, Médico 1, Quarto 101
-('2019-08-10', '2019-08-12', '2019-08-11', 'Internação por desidratação', 4, 2, 301), -- Paciente 4, Médico 2, Quarto 301
-('2020-11-05', '2020-11-10', '2020-11-09', 'Observação', 2, 4, 201), -- Paciente 2, Médico 4, Quarto 201
-('2021-01-15', '2021-01-20', '2021-01-19', 'Covid-19', 5, 3, 302); -- Paciente 5, Médico 3, Quarto 302
+('2015-03-01', '2015-03-05', '2015-03-04', 'Apêndice', 1, 1, 1), -- Paciente 1, Médico 1, Quarto 101
+('2016-06-10', '2016-06-15', '2016-06-14', 'Fratura de perna', 2, 2, 3), -- Paciente 2, Médico 2, Quarto 201
+('2017-09-20', '2017-09-25', '2017-09-24', 'Pneumonia', 1, 3, 2), -- Paciente 1, Médico 3, Quarto 102
+('2018-05-15', '2018-05-20', '2018-05-19', 'Cirurgia Geral', 3, 1, 1), -- Paciente 3, Médico 1, Quarto 101
+('2019-08-10', '2019-08-12', '2019-08-11', 'Internação por desidratação', 4, 2, 5), -- Paciente 4, Médico 2, Quarto 301
+('2020-11-05', '2020-11-10', '2020-11-09', 'Observação', 2, 4, 3), -- Paciente 2, Médico 4, Quarto 201
+('2021-01-15', '2021-01-20', '2021-01-19', 'Covid-19', 5, 3, 6); -- Paciente 5, Médico 3, Quarto 302
 
 -- Inserindo dados na tabela receita
 INSERT INTO receita (medicamentos_usados, quantidade_de_medicamentos, instrucoes_de_uso_dos_medicamentos, id_consulta, id_medico) VALUES
